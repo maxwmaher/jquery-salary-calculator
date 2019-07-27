@@ -2,6 +2,8 @@ $(document).ready(readyNow);
 
 let monthlyTotal = 0;
 
+let monthlyTotalDisplay;
+
 function readyNow() {
     $('#submit-button').on('click', submitEmployee);
     $('.table').on('click', '.delete-button', deleteEmployee);
@@ -45,6 +47,6 @@ function adjustMonthly(value) {
     let employeeMonthly = value / 12;
     monthlyTotal += employeeMonthly;
     monthlyTotal = Math.round(100 * monthlyTotal) / 100;
-    $('#monthly-cost').empty(monthlyTotal);
-    $('#monthly-cost').append(monthlyTotal);
+    monthlyTotalDisplay = '$' + monthlyTotal;
+    $('#monthly-cost').text(monthlyTotalDisplay);
 }
