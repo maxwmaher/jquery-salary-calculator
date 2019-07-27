@@ -19,14 +19,17 @@ function submitEmployee() {
         title: $('#title').val(),
         annualsalary: $('#annual-salary').val()
     }
+    let salToConvert = Number(employeeData.annualsalary);
     adjustMonthly(employeeData.annualsalary);
+    let convertedSal = convertEmploySal(salToConvert);
+
     $('.tbody').append(`
     <tr>
         <td>${employeeData.firstname}</td>
         <td>${employeeData.lastname}</td>
         <td>${employeeData.idnumber}</td>
         <td>${employeeData.title}</td>
-        <td>${employeeData.annualsalary}</td>
+        <td>${convertedSal}</td>
         <td><div class="delete-button">
         <button id="delete-button">Delete</button>
             </div>
@@ -41,7 +44,8 @@ function submitEmployee() {
 }
 
 function storeSalary() {
-    let salaryToDelete = $(this).closest('td').prev('td').text();
+    let salaryToDeleteAsString = $(this).closest('td').prev('td').text();
+    let salaryToDelete = Number(salaryToDeleteAsString.replace(/[^0-9.]+/g, ''));
     salaryToDelete = -salaryToDelete;
     adjustMonthly(salaryToDelete);
 }
@@ -66,4 +70,9 @@ function adjustMonthly(value) {
 
 function formatMoney(number) {
     monthlyTotalDisplay = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+function convertEmploySal(number) {
+    let salConversion = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    return salConversion;
 }
