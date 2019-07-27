@@ -41,12 +41,12 @@ function submitEmployee() {
 }
 
 function storeSalary() {
-    let pn = $(this).closest('td').prev('td').text();
-    console.log(pn);
+    let salaryToDelete = $(this).closest('td').prev('td').text();
+    salaryToDelete = -salaryToDelete;
+    adjustMonthly(salaryToDelete);
 }
 
 function deleteEmployee() {
-    console.log('This is actually talking.');
     $(this).closest('tr').remove();
 }
 
@@ -56,6 +56,8 @@ function adjustMonthly(value) {
     monthlyTotal = Math.round(100 * monthlyTotal) / 100;
     if (monthlyTotal > 20000) {
         $('#monthly-cost').css('background-color', 'red');
+    } else if (monthlyTotal <= 20000) {
+        $('#monthly-cost').css('background-color', 'white');
     }
     monthlyTotalDisplay = monthlyTotal;
     formatMoney(monthlyTotalDisplay);
