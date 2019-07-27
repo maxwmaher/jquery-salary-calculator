@@ -6,6 +6,7 @@ let monthlyTotalDisplay;
 
 function readyNow() {
     $('#submit-button').on('click', submitEmployee);
+    $('.table').on('click', '.delete-button', storeSalary);
     $('.table').on('click', '.delete-button', deleteEmployee);
     $('#monthly-cost').append(monthlyTotal);
 }
@@ -25,7 +26,7 @@ function submitEmployee() {
         <td>${employeeData.lastname}</td>
         <td>${employeeData.idnumber}</td>
         <td>${employeeData.title}</td>
-        <td>$${employeeData.annualsalary}</td>
+        <td>${employeeData.annualsalary}</td>
         <td><div class="delete-button">
         <button id="delete-button">Delete</button>
             </div>
@@ -39,7 +40,13 @@ function submitEmployee() {
     $('#annual-salary').val('')
 }
 
+function storeSalary() {
+    let pn = $(this).closest('td').prev('td').text();
+    console.log(pn);
+}
+
 function deleteEmployee() {
+    console.log('This is actually talking.');
     $(this).closest('tr').remove();
 }
 
@@ -50,6 +57,11 @@ function adjustMonthly(value) {
     if (monthlyTotal > 20000) {
         $('#monthly-cost').css('background-color', 'red');
     }
-    monthlyTotalDisplay = '$' + monthlyTotal;
+    monthlyTotalDisplay = monthlyTotal;
+    formatMoney(monthlyTotalDisplay);
     $('#monthly-cost').text(monthlyTotalDisplay);
+}
+
+function formatMoney(number) {
+    monthlyTotalDisplay = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
