@@ -47,6 +47,9 @@ function adjustMonthly(value) {
     let employeeMonthly = value / 12;
     monthlyTotal += employeeMonthly;
     monthlyTotal = Math.round(100 * monthlyTotal) / 100;
+    if (monthlyTotal > 20000) {
+        $('#monthly-cost').css('background-color', 'red');
+    }
     monthlyTotalDisplay = '$' + monthlyTotal;
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
