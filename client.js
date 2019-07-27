@@ -20,9 +20,13 @@ function submitEmployee() {
         annualsalary: $('#annual-salary').val()
     }
     let salToConvert = Number(employeeData.annualsalary);
+    if (salToConvert > 9999999999.99) {
+        $('#annual-salary').val('')
+        alert(`There's no way anyone makes that much money!`);
+        return false;
+    }
     adjustMonthly(employeeData.annualsalary);
     let convertedSal = convertEmploySal(salToConvert);
-
     $('.tbody').append(`
     <tr>
         <td>${employeeData.firstname}</td>
