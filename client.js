@@ -1,8 +1,11 @@
 $(document).ready(readyNow);
 
+let monthlyTotal = 0;
+
 function readyNow() {
     $('#submit-button').on('click', submitEmployee);
     $('.table').on('click', '.delete-button', deleteEmployee);
+    $('#monthly-cost').append(monthlyTotal);
 }
 
 function submitEmployee() {
@@ -13,7 +16,7 @@ function submitEmployee() {
         title: $('#title').val(),
         annualsalary: $('#annual-salary').val()
     }
-
+    adjustMonthly(employeeData.annualsalary);
     $('.tbody').append(`
     <tr>
         <td>${employeeData.firstname}</td>
@@ -36,4 +39,12 @@ function submitEmployee() {
 
 function deleteEmployee() {
     $(this).closest('tr').remove();
+}
+
+function adjustMonthly(value) {
+    let employeeMonthly = value / 12;
+    monthlyTotal += employeeMonthly;
+    monthlyTotal = Math.round(100 * monthlyTotal) / 100;
+    $('#monthly-cost').empty(monthlyTotal);
+    $('#monthly-cost').append(monthlyTotal);
 }
