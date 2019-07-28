@@ -45,3 +45,17 @@ div.submit {
 .input-style {
   padding-left: 4px;
 }
+
+body {
+  background-color: #3b3b3b;
+  padding-top: 20px;
+}
+
+section {
+  background-color: white;
+  padding-bottom: 12px;
+}
+
+header {
+  padding-top: 16px;
+}
