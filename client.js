@@ -49,7 +49,7 @@ function submitEmployee() {
 
 function storeSalary() {
     let salaryToDeleteAsString = $(this).closest('td').prev('td').text();
-    let salaryToDelete = Number(salaryToDeleteAsString.replace(/[^0-9.]+/g, ''));
+    let salaryToDelete = Number(salaryToDeleteAsString.replace(/[^0-9.-]+/g, ''));
     salaryToDelete = -salaryToDelete;
     adjustMonthly(salaryToDelete);
 }
@@ -69,6 +69,9 @@ function adjustMonthly(value) {
     }
     monthlyTotalDisplay = monthlyTotal;
     formatMoney(monthlyTotalDisplay);
+    if (monthlyTotalDisplay = '-$0.00') {
+        monthlyTotalDisplay = '$0.00';
+    }
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
 
