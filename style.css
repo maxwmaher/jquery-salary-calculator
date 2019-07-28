@@ -1,19 +1,47 @@
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
 th, td {
   text-align: left;
-  padding: 8px;
 }
 
 th {
-  background-color: #2C3852;
+  background-color: rgb(34, 49, 82);
   color: white;
   font-size: 18px;
 }
 
+td.format-td1 {
+  padding: 18px 12px 18px 12px;
+}
+
+td.format-td2 {
+  padding: 12px 8px 12px 8px;
+}
+
 #monthly-cost {
     background-color: white;
+}
+
+h2 {
+  margin-left: 40px;
+  padding-bottom: 8px;
+}
+
+div.input-group.mb-3 {
+  margin-left: 40px;
+  display: inline-block;
+}
+
+div.submit {
+  margin-left: 40px;
+  padding-bottom: 28px;
+}
+.table-div {
+  margin-top: 8px;
+}
+
+.monthly-total {
+  text-align: right;
+}
+
+.input-style {
+  padding-left: 4px;
 }

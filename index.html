@@ -12,8 +12,8 @@
     <script src="client.js"></script>
 </head>
 
-<body>
-    <header>
+<body class="container">
+    <header class="container">
         <div class="jumbotron">
             <h1>Salary Calculator</h1>
         </div>
@@ -21,17 +21,18 @@
     <h2>Add Employee</h2>
     <div id="myAlert" class="alert-storage">
     </div>
-    <div class="inputs">
-        <input id="first-name" type="text" placeholder="First Name">
-        <input id="last-name" type="text" placeholder="Last Name">
-        <input id="id-number" type="number" placeholder="ID">
-        <input id="title" type="text" placeholder="Title">
-        <input id="annual-salary" type="number" placeholder="Salary">
+    <div class="input-group mb-3">
+        <input class="input-style" id="first-name" type="text" placeholder="First Name">
+        <input class="input-style" id="last-name" type="text" placeholder="Last Name">
+        <input class="input-style" id="id-number" type="number" placeholder="ID">
+        <input class="input-style" id="title" type="text" placeholder="Title">
+        <input class="input-style" id="annual-salary" type="number" placeholder="Salary">
     </div>
     <div class="submit">
         <button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
     </div>
-    <h2>Employees</h2>
+    <main id="blockContainer" class="container">
+    <h3>Employees</h3>
     <div class="table-div">
         <table class="table table-hover table-striped ">
             <thead class="thead">
@@ -48,8 +49,9 @@
 
             </tbody>
         </table>
-        <h2>Total Monthly: <span id="monthly-cost"></span></h2>
+        <h3 class="monthly-total">Total Monthly: <span id="monthly-cost"></span></h2>
     </div>
+    </main>
 </body>
 
 </html>

@@ -39,7 +39,6 @@ function submitEmployee() {
             <strong>Error!</strong> Please enter a valid salary.
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             `);
-        // alert(`Please enter a valid salary.`);
         return false;
     }
 
@@ -47,12 +46,12 @@ function submitEmployee() {
     let convertedSal = convertEmploySal(salNumber);
     $('.tbody').append(`
     <tr>
-        <td>${employeeData.firstname}</td>
-        <td>${employeeData.lastname}</td>
-        <td>${employeeData.idnumber}</td>
-        <td>${employeeData.title}</td>
-        <td>${convertedSal}</td>
-        <td><div class="delete-button">
+        <td class="format-td1">${employeeData.firstname}</td>
+        <td class="format-td1">${employeeData.lastname}</td>
+        <td class="format-td1">${employeeData.idnumber}</td>
+        <td class="format-td1">${employeeData.title}</td>
+        <td class="format-td1">${convertedSal}</td>
+        <td class="format-td2"><div class="delete-button">
         <button type="button" class="btn btn-outline-danger" id="delete-button">Delete</button>
             </div>
         </td>
