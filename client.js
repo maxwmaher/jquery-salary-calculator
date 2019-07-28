@@ -19,20 +19,20 @@ function submitEmployee() {
         title: $('#title').val(),
         annualsalary: $('#annual-salary').val()
     }
-    let salToConvert = Number(employeeData.annualsalary);
-    if (salToConvert > 9999999999.99) {
+    let salNumber = Number(employeeData.annualsalary);
+    if (salNumber > 9999999999.99) {
         $('#annual-salary').val('')
         alert(`There's no way anyone makes that much money!`);
         return false;
     }
-    if (salToConvert < 0.01) {
+    if (salNumber < 0.01) {
         $('#annual-salary').val('')
         alert(`Please enter a valid salary.`);
         return false;
     }
 
     adjustMonthly(employeeData.annualsalary);
-    let convertedSal = convertEmploySal(salToConvert);
+    let convertedSal = convertEmploySal(salNumber);
     $('.tbody').append(`
     <tr>
         <td>${employeeData.firstname}</td>
@@ -55,10 +55,10 @@ function submitEmployee() {
 }
 
 function storeSalary() {
-    let salaryToDeleteAsString = $(this).closest('td').prev('td').text();
-    let salaryToDelete = Number(salaryToDeleteAsString.replace(/[^0-9.-]+/g, ''));
-    salaryToDelete = -salaryToDelete;
-    adjustMonthly(salaryToDelete);
+    let salaryStringDelete = $(this).closest('td').prev('td').text();
+    let salaryNumberDelete = Number(salaryStringDelete.replace(/[^0-9.-]+/g, ''));
+    salaryNumberDelete = -salaryNumberDelete;
+    adjustMonthly(salaryNumberDelete);
 }
 
 function deleteEmployee() {
