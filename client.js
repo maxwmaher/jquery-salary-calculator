@@ -10,6 +10,7 @@ function readyNow() {
     $('#submit-button').on('click', submitEmployee);
     $('.table').on('click', '.delete-button', storeSalary);
     $('.table').on('click', '.delete-button', deleteEmployee);
+    $('#myAlert').on('click', '.close', removeAlert);
     $('#monthly-cost').append(monthlyTotalDisplay);
 }
 
@@ -23,13 +24,22 @@ function submitEmployee() {
     }
     let salNumber = Number(employeeData.annualsalary);
     if (salNumber > 9999999999.99) {
-        $('#annual-salary').val('')
-        alert(`There's no way anyone makes that much money!`);
+        $('#annual-salary').val('');
+        $('#myAlert').append(`
+            <div id="firstAlert" class="alert alert-danger alert-dismissible fade show">
+            <strong>Error!</strong> The salary you entered exceeds $1 trillion, which not even Jeff Bezos makes (yet).
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            `);
         return false;
     }
     if (salNumber < 0.01) {
         $('#annual-salary').val('')
-        alert(`Please enter a valid salary.`);
+        $('#myAlert').append(`
+            <div id="secondAlert" class="alert alert-danger alert-dismissible fade show">
+            <strong>Error!</strong> Please enter a valid salary.
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            `);
+        // alert(`Please enter a valid salary.`);
         return false;
     }
 
@@ -47,7 +57,7 @@ function submitEmployee() {
             </div>
         </td>
     </tr>
-    `)
+    `);
 
     $('#first-name').val('');
     $('#last-name').val('');
@@ -88,4 +98,8 @@ function formatMoney(number) {
 function convertEmploySal(number) {
     let salConversion = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     return salConversion;
+}
+
+function removeAlert() {
+    $(this).closest('div').remove();
 }
