@@ -43,7 +43,7 @@ function submitEmployee() {
         <td>${employeeData.title}</td>
         <td>${convertedSal}</td>
         <td><div class="delete-button">
-        <button id="delete-button">Delete</button>
+        <button type="button" class="btn btn-outline-danger" id="delete-button">Delete</button>
             </div>
         </td>
     </tr>
