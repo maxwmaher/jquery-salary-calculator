@@ -69,7 +69,7 @@ function adjustMonthly(value) {
     }
     if (monthlyTotal <= 0) {
         monthlyTotal = 0;
-    }
+    }  //  This code may look weird, but without it, I experienced a glitch where I could get Total Monthly to equal -$0.00.  To replicate this, I entered first value as 55555.55, and second value as 65555.55.  Then, I deleted the first value, then I deleted the second value.  -$0.00 displayed as the Total Monthly.
     monthlyTotalDisplay = monthlyTotal;
     formatMoney(monthlyTotalDisplay);
     $('#monthly-cost').text(monthlyTotalDisplay);
