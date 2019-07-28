@@ -25,6 +25,12 @@ function submitEmployee() {
         alert(`There's no way anyone makes that much money!`);
         return false;
     }
+    if (salToConvert < 0.01) {
+        $('#annual-salary').val('')
+        alert(`Please enter a valid salary.`);
+        return false;
+    }
+
     adjustMonthly(employeeData.annualsalary);
     let convertedSal = convertEmploySal(salToConvert);
     $('.tbody').append(`
@@ -40,11 +46,12 @@ function submitEmployee() {
         </td>
     </tr>
     `)
-    $('#first-name').val('')
-    $('#last-name').val('')
-    $('#id-number').val('')
-    $('#title').val('')
-    $('#annual-salary').val('')
+
+    $('#first-name').val('');
+    $('#last-name').val('');
+    $('#id-number').val('');
+    $('#title').val('');
+    $('#annual-salary').val('');
 }
 
 function storeSalary() {
