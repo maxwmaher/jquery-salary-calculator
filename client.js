@@ -1,14 +1,16 @@
 $(document).ready(readyNow);
 
-let monthlyTotal = 0;
+let grandTotal = 0;
 
-let monthlyTotalDisplay;
+let monthlyTotalRaw = 0;
+
+let monthlyTotalDisplay = '$0.00';
 
 function readyNow() {
     $('#submit-button').on('click', submitEmployee);
     $('.table').on('click', '.delete-button', storeSalary);
     $('.table').on('click', '.delete-button', deleteEmployee);
-    $('#monthly-cost').append(monthlyTotal);
+    $('#monthly-cost').append(monthlyTotalDisplay);
 }
 
 function submitEmployee() {
@@ -31,7 +33,7 @@ function submitEmployee() {
         return false;
     }
 
-    adjustMonthly(employeeData.annualsalary);
+    adjustMonthly(salNumber);
     let convertedSal = convertEmploySal(salNumber);
     $('.tbody').append(`
     <tr>
@@ -66,18 +68,15 @@ function deleteEmployee() {
 }
 
 function adjustMonthly(value) {
-    let employeeMonthly = value / 12;
-    monthlyTotal += employeeMonthly;
-    monthlyTotal = Math.round(100 * monthlyTotal) / 100;
-    if (monthlyTotal > 20000) {
+    grandTotal += value * 100;
+    monthlyTotalRaw = grandTotal / 12 / 100;
+    monthlyTotalRaw = Math.round(100 * monthlyTotalRaw) / 100;
+    if (monthlyTotalRaw > 20000) {
         $('#monthly-cost').css('background-color', 'red');
-    } else if (monthlyTotal <= 20000) {
+    } else if (monthlyTotalRaw <= 20000) {
         $('#monthly-cost').css('background-color', 'white');
     }
-    if (monthlyTotal <= 0) {
-        monthlyTotal = 0;
-    }  //  This code may look weird, but without it, I experienced a glitch where I could get Total Monthly to equal -$0.00.  To replicate this, I entered first value as 55555.55, and second value as 65555.55.  Then, I deleted the first value, then I deleted the second value.  -$0.00 displayed as the Total Monthly.
-    monthlyTotalDisplay = monthlyTotal;
+    monthlyTotalDisplay = monthlyTotalRaw;
     formatMoney(monthlyTotalDisplay);
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
