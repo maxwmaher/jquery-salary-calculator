@@ -67,11 +67,11 @@ function adjustMonthly(value) {
     } else if (monthlyTotal <= 20000) {
         $('#monthly-cost').css('background-color', 'white');
     }
+    if (monthlyTotal <= 0) {
+        monthlyTotal = 0;
+    }
     monthlyTotalDisplay = monthlyTotal;
     formatMoney(monthlyTotalDisplay);
-    if (monthlyTotalDisplay = '-$0.00') {
-        monthlyTotalDisplay = '$0.00';
-    }
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
 
