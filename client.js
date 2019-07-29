@@ -77,8 +77,12 @@ function deleteEmployee() {
 }
 
 function adjustMonthly(value) {
+    console.log('grandTotal before multiplcation: ', grandTotal);
+    
     grandTotal += value * 100;
+    console.log('grandTotal after multiplcation: ', grandTotal);
     monthlyTotalRaw = grandTotal / 12 / 100;
+    console.log('monthlyTotalRaw: ', grandTotal);
     monthlyTotalRaw = Math.round(100 * monthlyTotalRaw) / 100;
     if (monthlyTotalRaw > 20000) {
         $('#monthly-cost').css('background-color', 'red');
@@ -86,10 +90,12 @@ function adjustMonthly(value) {
         $('#monthly-cost').css('background-color', 'white');
     }
     monthlyTotalDisplay = monthlyTotalRaw;
+    console.log('monthlyTotalDisplay: ', monthlyTotalDisplay);
     if (monthlyTotalDisplay === -0) {
         monthlyTotalDisplay = 0;
     }
     formatMoney(monthlyTotalDisplay);
+    console.log('after conversion: ', monthlyTotalDisplay);
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
 
