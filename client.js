@@ -86,6 +86,9 @@ function adjustMonthly(value) {
         $('#monthly-cost').css('background-color', 'white');
     }
     monthlyTotalDisplay = monthlyTotalRaw;
+    if (monthlyTotalDisplay === -0) {
+        monthlyTotalDisplay = 0;
+    }
     formatMoney(monthlyTotalDisplay);
     $('#monthly-cost').text(monthlyTotalDisplay);
 }
